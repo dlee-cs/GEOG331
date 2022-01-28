@@ -1,1 +1,1 @@
-# GEOG331-
+# GEOG331-Environmental Data Science
