@@ -40,7 +40,7 @@ par(mfrow=c(2,2))
 # *************histogram for the FIRST site in our levels ***************
 #main is the title name argument.
 #Here you want to paste the actual name of the factor not the numeric index
-hist(datW$TAVE[datW$siteN == 1],
+h1 <- hist(datW$TAVE[datW$siteN == 1],
      freq = FALSE,
      main = paste(levels(datW$NAME)[1]),
      xlab = "Average daily temperature (degrees C)",
@@ -62,9 +62,21 @@ abline(v = mean(datW$TAVE[datW$siteN == 1],na.rm=TRUE) + sd(datW$TAVE[datW$siteN
        col = "tomato3", 
        lty = 3, 
        lwd = 3)
+#add normal distribution line
+x.plot <- seq(-10,30, length.out = 100)
+y.plot <-  dnorm(seq(-10,30, length.out = 100),
+                 mean(datW$TAVE[datW$siteN == 1],na.rm=TRUE),
+                 sd(datW$TAVE[datW$siteN == 1],na.rm=TRUE))
+y.scaled <- (max(h1$density)/max(y.plot)) * y.plot
+points(x.plot,
+       y.scaled, 
+       type = "l", 
+       col = "royalblue3",
+       lwd = 4, 
+       lty = 2)
 
 # *************histogram for the SECOND site in our levels ***************
-hist(datW$TAVE[datW$siteN == 2],
+h2 <- hist(datW$TAVE[datW$siteN == 2],
      freq = FALSE,
      main = paste(levels(datW$NAME)[2]),
      xlab = "Average daily temperature (degrees C)",
@@ -87,8 +99,21 @@ abline(v = mean(datW$TAVE[datW$siteN == 2],na.rm=TRUE) + sd(datW$TAVE[datW$siteN
        lty = 3, 
        lwd = 3)
 
+#add normal distribution line
+x.plot <- seq(0,40, length.out = 100)
+y.plot <-  dnorm(seq(0,40, length.out = 100),
+                 mean(datW$TAVE[datW$siteN == 2],na.rm=TRUE),
+                 sd(datW$TAVE[datW$siteN == 2],na.rm=TRUE))
+y.scaled <- (max(h2$density)/max(y.plot)) * y.plot
+points(x.plot,
+       y.scaled, 
+       type = "l", 
+       col = "royalblue3",
+       lwd = 4, 
+       lty = 2)
+
 # *************histogram for the FOURTH site in our levels ***************
-hist(datW$TAVE[datW$siteN == 4],
+h4 <- hist(datW$TAVE[datW$siteN == 4],
      freq = FALSE,
      main = paste(levels(datW$NAME)[4]),
      xlab = "Average daily temperature (degrees C)",
@@ -111,8 +136,21 @@ abline(v = mean(datW$TAVE[datW$siteN == 4],na.rm=TRUE) + sd(datW$TAVE[datW$siteN
        lty = 3, 
        lwd = 3)
 
+#add normal distribution line
+x.plot <- seq(0,40, length.out = 100)
+y.plot <-  dnorm(seq(0,40, length.out = 100),
+                 mean(datW$TAVE[datW$siteN == 4],na.rm=TRUE),
+                 sd(datW$TAVE[datW$siteN == 4],na.rm=TRUE))
+y.scaled <- (max(h4$density)/max(y.plot)) * y.plot
+points(x.plot,
+       y.scaled, 
+       type = "l", 
+       col = "royalblue3",
+       lwd = 4, 
+       lty = 2)
+
 # *************histogram for the FIFTH site in our levels ***************
-hist(datW$TAVE[datW$siteN == 5],
+h5 <- hist(datW$TAVE[datW$siteN == 5],
      freq = FALSE,
      main = paste(levels(datW$NAME)[5]),
      xlab = "Average daily temperature (degrees C)",
@@ -134,4 +172,18 @@ abline(v = mean(datW$TAVE[datW$siteN == 5],na.rm=TRUE) + sd(datW$TAVE[datW$siteN
        col = "tomato3", 
        lty = 3, 
        lwd = 3)
+
+#add normal distribution line
+x.plot <- seq(-30,30, length.out = 100)
+y.plot <-  dnorm(seq(-30,30, length.out = 100),
+                 mean(datW$TAVE[datW$siteN == 5],na.rm=TRUE),
+                 sd(datW$TAVE[datW$siteN == 5],na.rm=TRUE))
+y.scaled <- (max(h5$density)/max(y.plot)) * y.plot
+points(x.plot,
+       y.scaled, 
+       type = "l", 
+       col = "royalblue3",
+       lwd = 4, 
+       lty = 2)
 #-------------------------------------------------------------------------------
+
