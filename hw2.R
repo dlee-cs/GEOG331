@@ -136,4 +136,3 @@ abline(v = mean(datW$TAVE[datW$siteN == 5],na.rm=TRUE) + sd(datW$TAVE[datW$siteN
        lty = 3, 
        lwd = 3)
 #-------------------------------------------------------------------------------
-
