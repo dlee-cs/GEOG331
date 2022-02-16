@@ -38,8 +38,7 @@ datW$siteN <- as.numeric(datW$NAME)
 par(mfrow=c(2,2))
 
 # *************histogram for the FIRST site in our levels ***************
-#main is the title name argument.
-#Here you want to paste the actual name of the factor not the numeric index
+#make histogram of daily average temps
 h1 <- hist(datW$TAVE[datW$siteN == 1],
      freq = FALSE,
      main = paste(levels(datW$NAME)[1]),
@@ -76,6 +75,7 @@ points(x.plot,
        lty = 2)
 
 # *************histogram for the SECOND site in our levels ***************
+#make histogram of daily average temps
 h2 <- hist(datW$TAVE[datW$siteN == 2],
      freq = FALSE,
      main = paste(levels(datW$NAME)[2]),
@@ -113,6 +113,7 @@ points(x.plot,
        lty = 2)
 
 # *************histogram for the FOURTH site in our levels ***************
+#make histogram of daily avg temps
 h4 <- hist(datW$TAVE[datW$siteN == 4],
      freq = FALSE,
      main = paste(levels(datW$NAME)[4]),
@@ -150,6 +151,7 @@ points(x.plot,
        lty = 2)
 
 # *************histogram for the FIFTH site in our levels ***************
+#make histogram of daily avg temps
 h5 <- hist(datW$TAVE[datW$siteN == 5],
      freq = FALSE,
      main = paste(levels(datW$NAME)[5]),
@@ -185,5 +187,52 @@ points(x.plot,
        col = "royalblue3",
        lwd = 4, 
        lty = 2)
-#-------------------------------------------------------------------------------
+
+
+#---------------------------------QUESTION 6------------------------------------
+#for Aberdeen, WA
+curr_extreme_high_threshold <- round(qnorm(0.95,
+                                           mean(datW$TAVE[datW$siteN == 1],na.rm=TRUE),
+                                           sd(datW$TAVE[datW$siteN == 1],na.rm=TRUE)),
+                                     1)
+increased_mean <- mean(datW$TAVE[datW$siteN == 1],na.rm=TRUE) + 4
+curr_sd <- sd(datW$TAVE[datW$siteN == 1],na.rm=TRUE)
+p_extreme_high <- round(1 - pnorm(curr_extreme_high_threshold,
+                                  increased_mean,
+                                  curr_sd),
+                        4)
+print(paste("PROB of EXTREME HIGH TEMPS:", p_extreme_high))
+
+
+#---------------------------------QUESTION 7------------------------------------
+#make histogram of daily precipitation in site 1 (Aberdeen,WA)
+h1_daily_p <- hist(datW$PRCP[datW$siteN == 1],
+           freq = FALSE,
+           main = paste(levels(datW$NAME)[1]),
+           xlab = "Average daily precipitation (mm)",
+           ylab = "Relative frequency",
+           col = "grey50",
+           border = "white")
+
+
+#---------------------------------QUESTION 8------------------------------------
+#get annual precip across sites
+annualPrecip <- aggregate(datW$PRCP, by=list(datW$NAME, datW$year), FUN="sum", na.rm=TRUE)
+
+#create meaningful col names 
+colnames(annualPrecip) <- c("SITE","YEAR", "AP")
+
+#convert level to number for factor data type
+annualPrecip$siteN <- as.numeric(annualPrecip$SITE)
+
+#histogram of annual precipitation at site 1 (Aberdeen, WA)
+h1_annual_p <- hist(annualPrecip$AP[annualPrecip$siteN == 1],
+           freq = FALSE,
+           main = paste(levels(annualPrecip$SITE)[1]),
+           xlab = "Annual Precipitation (mm)",
+           ylab = "Relative frequency",
+           col = "grey50",
+           border = "white")
+
+
 
