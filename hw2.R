@@ -2,8 +2,7 @@
 # DL 01/31/22
 
 #set working directory to my noaa data folder
-#CHANGE BEFORE SUBMITTING setwd("Z:/students/dslee/noaa_weather")
-setwd("/Users/nancychoy/Desktop/Env Data Science/GEOG331/noaa_weather")
+setwd("Z:/students/dslee/noaa_weather")
 
 #read in weather data
 datW <- read.csv("2011124.csv", stringsAsFactors = T)
