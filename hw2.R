@@ -14,6 +14,12 @@ datW$dateF <- as.Date(datW$DATE, "%Y-%m-%d")
 #and indicating that it should be treated as numeric data
 datW$year <- as.numeric(format(datW$dateF,"%Y"))
 
+# ---------------------------------QUESTION 2-----------------------------------
+char_vec <- c("abc", "123", "character", "February", "0")
+num_vec <- c(1, 8.5, 36.0, 2.14, 92)
+int_vec <- as.integer(c(1, 2, 3, 4, 5))
+fact <- factor(c("red", "blue", "blue", "red", "blue"))
+
 #create avg daily temp col (avg is halfway between min and max temp)
 datW$TAVE <- datW$TMIN + ((datW$TMAX-datW$TMIN)/2)
 
