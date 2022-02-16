@@ -216,7 +216,7 @@ h1_daily_p <- hist(datW$PRCP[datW$siteN == 1],
 
 
 #---------------------------------QUESTION 8------------------------------------
-#get annual precip across sites
+#get annual precipitation across sites
 annualPrecip <- aggregate(datW$PRCP, by=list(datW$NAME, datW$year), FUN="sum", na.rm=TRUE)
 
 #create meaningful col names 
@@ -235,4 +235,10 @@ h1_annual_p <- hist(annualPrecip$AP[annualPrecip$siteN == 1],
            border = "white")
 
 
+#---------------------------------QUESTION 9------------------------------------
+#get average annual precipitation across sites
+avgAnnualPrecip <- aggregate(annualPrecip$AP, by=list(annualPrecip$SITE), FUN="mean", na.rm=TRUE)
+
+#create meaningful col names 
+colnames(avgAnnualPrecip) <- c("SITE", "AVG_AP")
 
