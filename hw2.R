@@ -33,7 +33,6 @@ colnames(averageTemp) <- c("NAME","MAAT")
 #OR look at the row of data 
 datW$siteN <- as.numeric(datW$NAME)
 
-
 # ---------------------------------QUESTION 4-----------------------------------
 #add all 4 histogram plots into same window
 par(mfrow=c(2,2))
