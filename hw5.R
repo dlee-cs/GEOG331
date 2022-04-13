@@ -180,10 +180,10 @@ for(i in 1:nrow(hydroP)){
 
 ############################ Question 9 ############################
 #specify season as a factor
-datD$season[datD$doy >= 61 & datD$doy < 153] <- "spring"
-datD$season[datD$doy >= 153 & datD$doy < 245] <- "summer"
-datD$season[datD$doy >= 245 & datD$doy < 336] <- "fall"
-datD$season[datD$doy >= 336 | datD$doy < 61] <- "winter"
+datD$season[datD$doy >= 61 & datD$doy < 153] <- "Spring"
+datD$season[datD$doy >= 153 & datD$doy < 245] <- "Summer"
+datD$season[datD$doy >= 245 & datD$doy < 336] <- "Fall"
+datD$season[datD$doy >= 336 | datD$doy < 61] <- "Winter"
 #specify season as a factor
 datD$season <- as.factor(datD$season)
 
@@ -192,11 +192,13 @@ dev.new(width=8,height=8) #start new plot
 ggplot(data= datD[datD$year == 2016,], aes(season,discharge)) + 
   geom_violin() +
   ggtitle("Discharge of Harbor Brook, Syracuse NY (2016)") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(x="Season", y=expression(paste("Discharge ft"^"3 ","sec"^"-1")))
 
 #make a violin plot for 2017
 dev.new(width=8,height=8) #start new plot
 ggplot(data= datD[datD$year == 2017,], aes(season,discharge)) + 
   geom_violin() +
   ggtitle("Discharge of Harbor Brook, Syracuse NY (2017)") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(x="Season", y=expression(paste("Discharge ft"^"3 ","sec"^"-1")))
